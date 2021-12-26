@@ -1,11 +1,10 @@
 namespace Vending.Modelos
 {
-    
-    public class ParaFarma: Producto
+
+    public class ParaFarma : Producto
     {
-        public ParaFarma(string Nombre, decimal Precio) : base( Nombre, Precio)
+        public ParaFarma(string nombre, decimal precio) : base(nombre, precio)
         {
-            Tipo = ProductoTipo.Farma;
         }
     }
 }

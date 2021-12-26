@@ -30,7 +30,7 @@ namespace Vending.UI.Consola
             _casosDeUso = new Dictionary<(string, ModoTerminal), Func<bool>>(){
                 { ("Consultar Productos",ModoTerminal.Normal), ConsultarProducto },
                 { ("Adquirir Producto",ModoTerminal.Normal), AdquirirProducto },
-                { ("Reponer Productos",ModoTerminal.Admin), ReestablecerMáquina },
+                { ("Reposición y Recaudación",ModoTerminal.Admin), ReestablecerMáquina },
                 { ("Informe",ModoTerminal.Admin), Informe },
                 { ("Apagar Máquina",ModoTerminal.Admin), ApagarMaquina },
                 { (_menuModo[(int)_modo],ModoTerminal.Normal), establecerModoInterfaz },
@@ -88,20 +88,27 @@ namespace Vending.UI.Consola
 
                 List<string> ProductoVM(Producto p, int cantidad, ModoTerminal modo)
                 {
+                    // switch expresion + guardas
+                    // type casting
+                    // reflexion para tipo
                     var prefix = p.Tipo switch
                     {
-                        ProductoTipo.Farma => "℞ ",
-                        ProductoTipo.Refresco when p.EsDietetico() => "🥤",
-                        _ => "",
+                        "ParaFarma" => "💊",
+                        "RefrescoDietetico" => "🍉",
+                        // Número mágico -> refactorización
+                        "Refresco" when ((Refresco)p).Centilitros < 60 => "🥤",
+                        "Refresco"  => "🍶",
+                        _ => "🍬",
                     };
                     var data = new List<string> {
-                        prefix+p.Nombre,
+                        prefix+" "+p.Nombre,
                         p.Precio.ToString("#.00€"),
                     };
                     if (modo == ModoTerminal.Admin)
                         data.Add("              " + cantidad.ToString("0"));
                     return data;
                 }
+
             }
 
         }
@@ -129,21 +136,22 @@ namespace Vending.UI.Consola
                         if (cantidad > 0) break;
                         _vista.Mostrar($"'{articulo.Nombre}' no disponible en estos momentos");
                     }
+                    
                     // 3.- Informar
-                    _vista.Mostrar($"Ha seleccionado '{articulo.Nombre}'");
+                    _vista.Mostrar($"Has seleccionado '{articulo.Nombre}'");
                     _vista.Mostrar($"Importe {articulo.Precio:0.00}€");
 
-                    // 4.- -> Si Producto Parafarmacia obtner login
-                    if (articulo.Tipo == ProductoTipo.Farma && username == "")
+                    // 4.- -> Si Producto Parafarmacia obtener usuario
+                    if (articulo.Tipo == "ParaFarma" && username == "")
                     {
-                        _vista.Mostrar($"Los productos de ParaFarmacia requieren que se identifique");
-                        username = _vista.TryObtenerDatoDeTipo<string>("Indique su nombre");
+                        _vista.Mostrar($"Este producto requiere que te identifiques");
+                        username = _vista.TryObtenerDatoDeTipo<string>("Indica tu nombre");
                     }
 
                     // 5.- Obtener importe del Pago
                     while (true)
                     {
-                        var monedas = _vista.TryObtenerArrayInt("Indique el número de monedas de 2€,1€,0.5€,0.2€ y 0.1€ separadas por ','", 5, ',');
+                        var monedas = _vista.TryObtenerArrayInt("Introduce el número de monedas de 2€,1€,0.5€,0.2€ y 0.1€ separadas por ','", 5, ',');
                         pago = new Efectivo(monedas);
                         if (pago.Valido) break;
                         _vista.Mostrar($"Importe introducido no válido", ConsoleColor.DarkRed);
@@ -159,27 +167,32 @@ namespace Vending.UI.Consola
                         _vista.Mostrar($"Cambio no disponible", ConsoleColor.DarkRed);
                     if (pagoStatus != PagoTipo.Valido)
                     {
-                        _vista.Mostrar($"Recoja su dinero {pago.Importe:0.00}€");
-                        break;
+                        _vista.Mostrar($"Recoge tu dinero {pago.Importe:0.00}€");
+                        break; // Salimos
                     }
-                    // Pago Validado
-                    _vista.Mostrar("");
+                    
                     // 7.- Proceder a la entrega de producto
                     _vista.Mostrar($"Expulsando '{articulo.Nombre}' a la bandeja de recogida ...");
                     _sistema.DescontarCantidad(coordenadas);
+                    
                     // 8.- Proceder a actualizar Caja 
                     var cambio = _sistema.AplicarPago(articulo.Precio, pago);
+                    
                     // 9.- Devolver Cambios
                     if (cambio.Importe > 0)
                         _vista.Mostrar($"Su cambio {cambio}");
 
-                    // 10.- -> Si Identificado ...
+                    // 10.- Operaciones de Finalización
+                    // _sistema.VentaFinalizada(articulo.Precio)
+                    // ventas++
+                    // total+=precio
+
+                    // 11.- Fin ciclo o Continue ...
                     if (username != "")
                     {
                         var sn = _vista.TryObtenerCaracterDeString("Desea seguir comprando", "SN", 'N');
                         if (sn == 'S') continue;
                     }
-                    // 11.- Fin ciclo
                     break;
                 }
                 catch (Exception)
@@ -194,10 +207,12 @@ namespace Vending.UI.Consola
         {
             _sistema.RellernarParrilla();
             _sistema.ReestablecerCaja();
+            //_sistema.RestablecerVentas();
             return true;
         }
         private bool Informe()
         {
+            //var caja = _sistema.InfoCaja();
             var info = _sistema.Informe();
             _vista.Mostrar(info);
             return true;

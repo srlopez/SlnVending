@@ -11,16 +11,20 @@ namespace Vending.Subsitemas.Monetarios
         decimal _cajon;
 
         // cantidad máxima de cada moneda en caja
-        public int MAX_MONEDAS { get; } = 5;
+        public int MAX_MONEDAS { get; init; }
         // cantidad máxima de monedas admitas en el pago
-        public int MAX_PAGO_MONEDAS { get; } = 5;
-
+        public int MAX_PAGO_MONEDAS { get; init; }
         decimal Valor
         {
             get => _caja.Importe + _cajon;
         }
 
-        public ControlDePagos() =>  ReestablecerCaja();
+        public ControlDePagos()
+        {
+            MAX_MONEDAS = Configuracion.MAX_MONEDAS;
+            MAX_PAGO_MONEDAS = Configuracion.MAX_PAGO_MONEDAS;
+            ReestablecerCaja();
+        }
         public void ReestablecerCaja()
         {
             _caja = new Efectivo(new int[] { 5, 5, 5, 5, 5 });
@@ -38,7 +42,7 @@ namespace Vending.Subsitemas.Monetarios
             var cambio = IntegrarImporteYCalcularCambio(pago.Importe - precio, pago, _caja, ref _cajon);
             return cambio;
         }
-        
+
         private Efectivo IntegrarImporteYCalcularCambio(decimal aDevolver, Efectivo importe, Efectivo caja, ref decimal resto)
         {
             // Integrar importe
@@ -63,7 +67,7 @@ namespace Vending.Subsitemas.Monetarios
                     caja.Cantidad[i]--;
                 }
             }
-            if(aDevolver!=0) cambio = new Efectivo(new int[] { -1 });
+            if (aDevolver != 0) cambio = new Efectivo(new int[] { -1 });
             return cambio;
         }
 

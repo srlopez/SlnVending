@@ -61,6 +61,7 @@ namespace Vending.UI.Consola
                     {
                         var s = parrilla[f, c][i]+ new string(' ', ancho);
                         Write($"{charV}{s.Substring(0,ancho)}");
+                        //Write($"{charV}{parrilla[f, c][i],-ancho}");
                     }
                     WriteLine(charV);
                 }

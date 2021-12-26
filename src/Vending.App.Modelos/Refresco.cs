@@ -2,14 +2,12 @@ namespace Vending.Modelos
 {
     public class Refresco : Producto
     {
-        public bool Zero { get; set; }
+        public decimal Centilitros { get; init;}
 
-        public Refresco(string Nombre, decimal Precio, bool Zero = false) : base(Nombre, Precio)
+        public Refresco(string nombre, decimal precio, decimal centilitros = 100) : base(nombre, precio)
         {
-            this.Zero = Zero;
-            Tipo = ProductoTipo.Refresco;
+            Centilitros = centilitros;
         }
 
-        public override bool EsDietetico() => Zero == true;
     }
 }
