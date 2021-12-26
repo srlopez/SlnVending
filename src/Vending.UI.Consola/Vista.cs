@@ -49,7 +49,8 @@ namespace Vending.UI.Consola
             const char charV = '|';
             const char charHV = '+';
             var border = new string(charH, ancho);
-
+            
+            Mostrar(titulo, ConsoleColor.Yellow);
             MostrarIndiceColumnas(columnas);
             MostrarSeparadorH(columnas);
             for (var f = 0; f < filas; f++)

@@ -4,7 +4,7 @@ namespace Vending
     {
         // Control de Pagos
         // cantidad máxima de cada moneda en caja
-        public static int MAX_MONEDAS { get; } = 10;
+        public static int MAX_MONEDAS { get; } = 5;//10;
         // cantidad máxima de monedas admitas en el pago
         public static int MAX_PAGO_MONEDAS { get; } = 5;
         // Visualización

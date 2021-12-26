@@ -9,16 +9,15 @@ namespace Vending
     {
 
         [Theory]
-        [InlineData(false, new int[] { 1 })]
-        [InlineData(false, new int[] { 1, 2, 3 })]
-        [InlineData(true, new int[] { 1, 2, 3, 4, 5 })]
-        [InlineData(false, new int[] { 1, 2, 3, 4, 5, 6 })]
-        [InlineData(false, new int[] { 1, 2, 3, -4, 5 })]
-        public void Efectivo_Valido_Equal(bool esperado, int[] cantidad)
+        [InlineData(new int[] { 1 })]
+        [InlineData(new int[] { 1, 2, 3 })]
+        [InlineData(new int[] { 1, 2, 3, 4, 5, 6 })]
+        [InlineData(new int[] { 1, 2, 3, -4, 5 })]
+        public void Efectivo_Invalido( int[] cantidad)
         {
             //
             var cash = new Efectivo(cantidad);
-            Assert.Equal(esperado, cash.Valido);
+            Assert.Equal(false, cash.Valido);
         }
 
         [Theory]
@@ -27,10 +26,24 @@ namespace Vending
         [InlineData(2.5, new int[] { 1, 0, 1, 0, 0 })]
         [InlineData(2.2, new int[] { 1, 0, 0, 1, 0 })]
         [InlineData(2.1, new int[] { 1, 0, 0, 0, 1 })]
-        public void Efectivo_Valor_Equal(decimal esperado, int[] cantidad)
+        public void Valor_De_Efectivo_De_Array(decimal esperado, int[] cantidad)
         {
             //
             var cash = new Efectivo(cantidad);
+            Assert.Equal(esperado, cash.Importe);
+        }
+
+        [Theory]
+        [InlineData(2)]
+        [InlineData(3.10)]
+        [InlineData(4.20)]
+        [InlineData(6.30)]
+        [InlineData(7.50)]
+        [InlineData(8.60)]
+        public void Valor_De_Efectivo_De_Decimal(decimal esperado)
+        {
+            //
+            var cash = new Efectivo(esperado);
             Assert.Equal(esperado, cash.Importe);
         }
     }

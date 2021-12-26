@@ -18,7 +18,7 @@ namespace Vending.Modelos
 
         public string Tipo { get => this.GetType().ToString().Split(".").Last(); }
 
-        public override string ToString() => $"{Tipo}:{Nombre,12} {Precio}";
+        public override string ToString() => $"{Tipo}: '{Nombre}' {Precio:#.00€}";
 
     }
 }

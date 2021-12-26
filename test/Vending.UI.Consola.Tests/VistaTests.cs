@@ -96,12 +96,14 @@ namespace Vending.UI.Consola
             Console.SetOut(output);
             // When
             vista.MostrarParrilla("hola", datos);
+            var pantalla = output.ToString();
             // Then
 
-            Assert.True(output.ToString().Contains("|a1        |b1        |"));
-            Assert.True(output.ToString().Contains("|a2        |b2        |"));
-            Assert.True(output.ToString().Contains("|e1        |f1        |"));
-            Assert.True(output.ToString().Contains("|e2        |f2        |"));
+            Assert.True(pantalla.Contains("hola"));
+            Assert.True(pantalla.Contains("|a1"));
+            Assert.True(pantalla.Contains("|b2"));
+            Assert.True(pantalla.Contains("|e1"));
+            Assert.True(pantalla.Contains("|e2"));
             //....
         }
 

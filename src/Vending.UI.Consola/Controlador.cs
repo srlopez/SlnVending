@@ -138,8 +138,9 @@ namespace Vending.UI.Consola
                     }
                     
                     // 3.- Informar
-                    _vista.Mostrar($"Has seleccionado '{articulo.Nombre}'");
-                    _vista.Mostrar($"Importe {articulo.Precio:0.00}€");
+                    _vista.Mostrar($"Has seleccionado {articulo}");
+                    // _vista.Mostrar($"Has seleccionado '{articulo.Nombre}'");
+                    // _vista.Mostrar($"Importe {articulo.Precio:0.00}€");
 
                     // 4.- -> Si Producto Parafarmacia obtener usuario
                     if (articulo.Tipo == "ParaFarma" && username == "")

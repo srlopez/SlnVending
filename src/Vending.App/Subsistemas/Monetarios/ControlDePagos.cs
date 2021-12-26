@@ -14,20 +14,20 @@ namespace Vending.Subsitemas.Monetarios
         public int MAX_MONEDAS { get; init; }
         // cantidad máxima de monedas admitas en el pago
         public int MAX_PAGO_MONEDAS { get; init; }
-        decimal Valor
+        public decimal Valor
         {
             get => _caja.Importe + _cajon;
         }
 
-        public ControlDePagos()
+        public ControlDePagos(Efectivo caja = null)
         {
             MAX_MONEDAS = Configuracion.MAX_MONEDAS;
             MAX_PAGO_MONEDAS = Configuracion.MAX_PAGO_MONEDAS;
-            ReestablecerCaja();
+            ReestablecerCaja(caja);
         }
-        public void ReestablecerCaja()
+        public void ReestablecerCaja(Efectivo caja = null)
         {
-            _caja = new Efectivo(new int[] { 5, 5, 5, 5, 5 });
+            _caja = caja ?? new Efectivo(new int[] { 5, 5, 5, 5, 5 });
             _cajon = 0;
         }
         public Efectivo ValidarPago(decimal precio, Efectivo pago)
