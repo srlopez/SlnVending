@@ -19,7 +19,6 @@ namespace Vending
         }
 
         // ===== DISPENSADOR ====
-
         public (int, int) Dimensiones
         {
             get => _dispensador.Dimensiones;
