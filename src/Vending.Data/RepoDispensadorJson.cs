@@ -33,11 +33,11 @@ namespace Vending.Data
             var parrilla = new Producto[filas, columnas];
             for (var f = 0; f < filas; f++)
                 for (var c = 0; c < columnas; c++)
-                    parrilla[f, c] = toProducto(dataJson[f][c]);
+                    parrilla[f, c] = parseJson(dataJson[f][c]);
 
             return parrilla;
 
-            Producto toProducto(dynamic data)
+            Producto parseJson(dynamic data)
             {
                 string typeName = "Vending.Modelos." + data.Tipo + ", Vending.App.Modelos";
                 var jsonProducto = JsonConvert.SerializeObject(data);
