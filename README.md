@@ -65,5 +65,6 @@ En modo ADMIN, añadirá las unidades disponibles de cada producto.
 El tipo de artículo debe ser expuesto al usuario.
 Si el refresco es pequeño (menor de 60cc) también se indica. 
 
-
-
+### Persitencia
+Estudiar la persitencia
+Capa de Datos
