@@ -1,0 +1,146 @@
+[
+  [
+    {
+      "Nombre": "Paracetamol",
+      "Precio": 2.5,
+      "Cantidad": 3,
+      "Tipo": "ParaFarma"
+    },
+    {
+      "Gramos": 50.0,
+      "Nombre": "Surtido 50gr",
+      "Precio": 1.3,
+      "Cantidad": 5,
+      "Tipo": "Golosina"
+    },
+    {
+      "Centilitros": 120.0,
+      "Nombre": "KakoCola",
+      "Precio": 1.5,
+      "Cantidad": 4,
+      "Tipo": "RefrescoDietetico"
+    },
+    {
+      "Gramos": 50.0,
+      "Nombre": "Gominolas 50gr",
+      "Precio": 0.8,
+      "Cantidad": 5,
+      "Tipo": "Golosina"
+    }
+  ],
+  [
+    {
+      "Centilitros": 50.0,
+      "Nombre": "CocoCola",
+      "Precio": 1.5,
+      "Cantidad": 5,
+      "Tipo": "RefrescoDietetico"
+    },
+    {
+      "Nombre": "Gelocatil",
+      "Precio": 1.1,
+      "Cantidad": 5,
+      "Tipo": "ParaFarma"
+    },
+    {
+      "Centilitros": 30.0,
+      "Nombre": "Chus Limon",
+      "Precio": 1.1,
+      "Cantidad": 5,
+      "Tipo": "Refresco"
+    },
+    {
+      "Nombre": "Dalsi",
+      "Precio": 1.1,
+      "Cantidad": 5,
+      "Tipo": "ParaFarma"
+    }
+  ],
+  [
+    {
+      "Gramos": 50.0,
+      "Nombre": "Candy Crush",
+      "Precio": 1.5,
+      "Cantidad": 5,
+      "Tipo": "Golosina"
+    },
+    {
+      "Gramos": 50.0,
+      "Nombre": "Caramelo",
+      "Precio": 1.1,
+      "Cantidad": 5,
+      "Tipo": "Golosina"
+    },
+    {
+      "Gramos": 30.0,
+      "Nombre": "Gominolas 30gr",
+      "Precio": 1.1,
+      "Cantidad": 4,
+      "Tipo": "Golosina"
+    },
+    {
+      "Gramos": 50.0,
+      "Nombre": "Aceitunas",
+      "Precio": 1.1,
+      "Cantidad": 5,
+      "Tipo": "Golosina"
+    }
+  ],
+  [
+    {
+      "Gramos": 50.0,
+      "Nombre": "Nube Algodón",
+      "Precio": 1.2,
+      "Cantidad": 5,
+      "Tipo": "Golosina"
+    },
+    {
+      "Centilitros": 100.0,
+      "Nombre": "Chus Naranja",
+      "Precio": 1.1,
+      "Cantidad": 5,
+      "Tipo": "Refresco"
+    },
+    {
+      "Nombre": "Apiteral",
+      "Precio": 1.2,
+      "Cantidad": 5,
+      "Tipo": "ParaFarma"
+    },
+    {
+      "Nombre": "Aspirina",
+      "Precio": 3.1,
+      "Cantidad": 5,
+      "Tipo": "ParaFarma"
+    }
+  ],
+  [
+    {
+      "Centilitros": 30.0,
+      "Nombre": "AguaLoca",
+      "Precio": 1.5,
+      "Cantidad": 4,
+      "Tipo": "RefrescoDietetico"
+    },
+    {
+      "Nombre": "Espidifen",
+      "Precio": 2.2,
+      "Cantidad": 5,
+      "Tipo": "ParaFarma"
+    },
+    {
+      "Centilitros": 100.0,
+      "Nombre": "Chus Kola",
+      "Precio": 1.1,
+      "Cantidad": 5,
+      "Tipo": "Refresco"
+    },
+    {
+      "Gramos": 50.0,
+      "Nombre": "Chicle",
+      "Precio": 0.7,
+      "Cantidad": 5,
+      "Tipo": "Golosina"
+    }
+  ]
+]

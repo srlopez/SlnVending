@@ -2,8 +2,8 @@ namespace Vending.Modelos
 {
     public class Golosina : Producto
     {
-        decimal Gramos { get; init;}
-        public Golosina(string Nombre, decimal Precio, decimal gramos = 50) : base(Nombre, Precio)
+        public decimal Gramos { get; init;}
+        public Golosina(string nombre, decimal? precio, decimal gramos = 50, int cantidad = 0) : base(nombre, precio, cantidad)
         {
             Gramos = gramos;
         }

@@ -49,5 +49,9 @@ namespace Vending
         public string Informe() => _ctrlPagos.ToString();
         // === SEGURIDAD ====
         public bool EsPinValido(string pin) => _ctrlSeguridad.EsPinValido(pin);
+        // === OPERATIVA ====
+        public void ApagarMaquina(){
+            _dispensador.Guardar();
+        }
     }
 }

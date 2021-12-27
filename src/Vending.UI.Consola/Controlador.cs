@@ -222,6 +222,7 @@ namespace Vending.UI.Consola
         {
             var sn = _vista.TryObtenerCaracterDeString("Desea imprimir informe", "SN", 'S');
             if (sn == 'S') Informe();
+            _sistema.ApagarMaquina();
             _vista.Mostrar("Apagando máquina ...");
             return false;
         }
