@@ -39,10 +39,13 @@ namespace Vending.Data
 
             Producto parseJson(dynamic data)
             {
+                //Newtonsoft.Json.Linq.JObject
                 string typeName = "Vending.Modelos." + data.Tipo + ", Vending.App.Modelos";
-                var jsonProducto = JsonConvert.SerializeObject(data);
                 Type type = Type.GetType(typeName);
-                return JsonConvert.DeserializeObject(jsonProducto, type);
+                return data.ToObject(type);
+                // //Otra forma
+                //var jsonProducto = JsonConvert.SerializeObject(data);
+                //return JsonConvert.DeserializeObject(jsonProducto, type);
             }
         }
         /*

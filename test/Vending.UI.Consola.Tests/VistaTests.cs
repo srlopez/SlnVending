@@ -99,11 +99,11 @@ namespace Vending.UI.Consola
             var pantalla = output.ToString();
             // Then
 
-            Assert.True(pantalla.Contains("hola"));
-            Assert.True(pantalla.Contains("|a1"));
-            Assert.True(pantalla.Contains("|b2"));
-            Assert.True(pantalla.Contains("|e1"));
-            Assert.True(pantalla.Contains("|e2"));
+            Assert.Contains("hola",pantalla);
+            Assert.Contains("|a1",pantalla);
+            Assert.Contains("|b2",pantalla);
+            Assert.Contains("|e1",pantalla);
+            Assert.Contains("|e2",pantalla);
             //....
         }
 
