@@ -11,12 +11,11 @@ namespace Vending.Data
     {
         private string _dataPath;
         private string _file;
-
         void IRepoDispensador.Inicializar()
         {
             // TODO: Parametizar 
-            _dataPath = "../../data/";
-            _file = _dataPath + "Dispensador.json";
+            var config = new AppConfig().Get();
+            _file = config.DataPath + "Dispensador.json";
         }
         void IRepoDispensador.Guardar(Producto[,] parrilla)
         {

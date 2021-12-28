@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Vending.App.Modelos\Vending.App.Modelos.csproj" />
+    <ProjectReference Include="..\Vending.App.Core\Vending.App.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

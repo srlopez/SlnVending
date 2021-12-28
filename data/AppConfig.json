@@ -1,0 +1,8 @@
+{
+  "App": "SlnVending",
+  "DataPath": "/home/santi/dev/net/SlnNet/SlnVending/data/",
+  "SeguridadValor": 14, 
+  "MaxMonedasPorCanal": 5, 
+  "MaxMonedasPorPago": 5, 
+  "RefrescoPequeño": 60
+}

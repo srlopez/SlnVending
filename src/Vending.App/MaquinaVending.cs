@@ -36,8 +36,8 @@ namespace Vending
             // Pago insuficiente
             if (pago.Importe < precio) return PagoTipo.Insuficiente;
             // Numero de monedas excesivo
-            if (pago.Cantidad.Any(i => i > _ctrlPagos.MAX_MONEDAS)) return PagoTipo.NoAdmintido;
-            if (pago.Cantidad.Sum() > _ctrlPagos.MAX_PAGO_MONEDAS) return PagoTipo.NoAdmintido;
+            if (pago.Cantidad.Any(i => i > _ctrlPagos.MaxMonedasPorCanal)) return PagoTipo.NoAdmintido;
+            if (pago.Cantidad.Sum() > _ctrlPagos.MaxMonedasPorPago) return PagoTipo.NoAdmintido;
             // Cambio no disponible
             var cambio = _ctrlPagos.ValidarPago(precio, pago);
             if (!cambio.Valido) return PagoTipo.SinCambios;

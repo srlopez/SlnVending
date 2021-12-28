@@ -11,9 +11,9 @@ namespace Vending.Subsitemas.Monetarios
         decimal _cajon;
 
         // cantidad máxima de cada moneda en caja
-        public int MAX_MONEDAS { get; init; }
+        public int MaxMonedasPorCanal { get; init; }
         // cantidad máxima de monedas admitas en el pago
-        public int MAX_PAGO_MONEDAS { get; init; }
+        public int MaxMonedasPorPago { get; init; }
         public decimal Valor
         {
             get => _caja.Importe + _cajon;
@@ -21,8 +21,10 @@ namespace Vending.Subsitemas.Monetarios
 
         public ControlDePagos(Efectivo caja = null)
         {
-            MAX_MONEDAS = Configuracion.MAX_MONEDAS;
-            MAX_PAGO_MONEDAS = Configuracion.MAX_PAGO_MONEDAS;
+            var config = new AppConfig().Get();
+
+            MaxMonedasPorCanal = config.MaxMonedasPorCanal;
+            MaxMonedasPorPago = config.MaxMonedasPorPago;
             ReestablecerCaja(caja);
         }
         public void ReestablecerCaja(Efectivo caja = null)
@@ -49,10 +51,10 @@ namespace Vending.Subsitemas.Monetarios
             for (var i = 0; i < caja.Length; i++)
             {
                 caja.Cantidad[i] += importe.Cantidad[i];
-                if (caja.Cantidad[i] > MAX_MONEDAS)
+                if (caja.Cantidad[i] > MaxMonedasPorCanal)
                 {
-                    resto += (caja.Cantidad[i] - MAX_MONEDAS) * caja.Valor[i];
-                    caja.Cantidad[i] = MAX_MONEDAS;
+                    resto += (caja.Cantidad[i] - MaxMonedasPorCanal) * caja.Valor[i];
+                    caja.Cantidad[i] = MaxMonedasPorCanal;
                 }
             }
             // Calcular Cambio
