@@ -49,7 +49,7 @@ namespace Vending.UI.Consola
             const char charV = '|';
             const char charHV = '+';
             var border = new string(charH, ancho);
-            
+
             Mostrar(titulo, ConsoleColor.Yellow);
             MostrarIndiceColumnas(columnas);
             MostrarSeparadorH(columnas);
@@ -60,8 +60,8 @@ namespace Vending.UI.Consola
                     MostrarIndiceFila(f, i == alto % 2);
                     for (var c = 0; c < columnas; c++)
                     {
-                        var s = parrilla[f, c][i]+ new string(' ', ancho);
-                        Write($"{charV}{s.Substring(0,ancho)}");
+                        var s = parrilla[f, c][i] + new string(' ', ancho);
+                        Write($"{charV}{s.Substring(0, ancho)}");
                         //Write($"{charV}{parrilla[f, c][i],-ancho}");
                     }
                     WriteLine(charV);
@@ -76,7 +76,7 @@ namespace Vending.UI.Consola
             }
             void MostrarIndiceColumnas(int len)
             {
-                var fmt = new string(' ', ancho/2);
+                var fmt = new string(' ', ancho / 2);
                 for (var c = 0; c < len; c++) Write($"{fmt}{c}{fmt}");
                 WriteLine();
             }
@@ -121,9 +121,9 @@ namespace Vending.UI.Consola
                 {
                     input = TryObtenerDatoDeTipo<int>(prompt);
                 }
-                catch (Exception e)
+                catch (Exception)// e)
                 {
-                    throw e;
+                    throw; // e;
                 };
             return input;
         }
@@ -135,9 +135,9 @@ namespace Vending.UI.Consola
                 var input = TryObtenerValorEnRangoInt(1, datos.Count, prompt);
                 return datos[input - 1];
             }
-            catch (Exception e)
+            catch (Exception)// e)
             {
-                throw e;
+                throw; // e;
             };
         }
         public (int x, int y) TryObtenerTuplaInt(string prompt, (int xMax, int yMax) limites)
