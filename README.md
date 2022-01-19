@@ -12,7 +12,7 @@ https://www.plantuml.com/plantuml
 
 Nuestras máquinas son susceptibles de ser configuradas de formas distintas.  
 Adminten tipos de productos distintos como son `Golosinas`, `Refrescos` y artículos de `Parafarmacia`.   
-Las golosinas tienen `peso` en gramos, los refrescos tiene `capacidad` en centilitros.  Además los refrescos pueden ser `Dietéticos`.
+Las golosinas tienen `peso` en gramos, los refrescos tienen `capacidad` en centilitros.  Además los refrescos pueden ser `Dietéticos`.
 
 La matriz de productos puede ser del tamaño que el cliente desee.
 
@@ -22,17 +22,17 @@ El usuario se presenta ante la máquina y puede elegir entre `Consultar los prod
 
 ### Administración
 **La administración** de la máquina consiste en un tareas diarias como:
-- recaudar el `cajón de monedas`, y 
-- rellenar cada canal de la `caja de cambios` de `2€`/`1€`/`0,50€`/`0,20€`/`0,10€` con `10 monedas`, (no usamos `0,05€`), y
+- Recaudar el `cajón de monedas`, y 
+- Rellenar cada canal de la `caja de cambios` de `2€`/`1€`/`0,50€`/`0,20€`/`0,10€` con `10 monedas`, (no usamos `0,05€`), y
 - completar los productos hasta `5 unidades`. 
 
 y otras tareas como:
-- obtener un informe, y
-- apagar la máquina.
+- Obtener un informe, y
+- Apagar la máquina.
 
 Para entrar en modo administrativo se activa un sistema de seguridad, configurado según desee el cliente. Y para ello ofrecemos dos tipos de `control de Seguridad`:  
-- A mediante PIN'es prefijados, y
-- B mediante on PIN validado por algoritmo secreto. 
+- A.- mediante PIN'es prefijados, y
+- B.- mediante on PIN validado por algoritmo secreto. 
 
 **Reposición y recaudación:**  
 RELLENAMOS TODOS LOS artículos, y la CAJA de cambios hasta sus máximos permitidos.
@@ -54,7 +54,7 @@ Los productos de ParaFarmacia deben pueden ser adquiridos pero necesitan `identi
 
 A continuación el usuario deberá introducir su importe en monedas, en un `máximo de 5 monedas`. (tú decides cómo se introduce el importe).
 
-El importe del pago será validado, y si no es conforme se devuelve el importe, y se cancela la operación.
+El importe del pago será validado, y si `no es conforme` se devuelve el importe, y se cancela la operación.
 
 Durante el proceso de pago, las monedas se reintegran en los `canales de cambio` hasta el máximo permitido, y el resto van al cajón.
 El `cambio` será con el menor número de monedas posibles (opcional: evitando las monedas de 2€).
@@ -63,7 +63,7 @@ El `cambio` será con el menor número de monedas posibles (opcional: evitando l
 En modo USER mostrará la etiqueta y el precio.
 En modo ADMIN, añadirá las unidades disponibles de cada producto.
 El tipo de artículo debe ser expuesto al usuario.
-Si el refresco es pequeño (menor de 60cc) también se indica. 
+Si el refresco es pequeño (menor de 60cc) también se representa. 
 
 ### Persitencia
 Estudiar la persitencia
