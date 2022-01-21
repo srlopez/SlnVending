@@ -15,10 +15,16 @@ namespace Vending.Subsitemas
             get => (Parrilla.GetLength(0), Parrilla.GetLength(1));
         }
         
-        public Dispensador(IRepoDispensador repo){
-            _repositorio = repo;
-            _repositorio.Inicializar();
-            Parrilla = _repositorio.Cargar();
+        // public Dispensador(IRepoDispensador repo){
+        //     _repositorio = repo;
+        //     _repositorio.Inicializar();
+        //     Parrilla = _repositorio.Cargar();
+        // }
+        public Dispensador(Producto[,] parrilla){
+            // _repositorio = repo;
+            // _repositorio.Inicializar();
+            // Parrilla = _repositorio.Cargar();
+            Parrilla = parrilla;
         }
         public Producto ObtenerInfo(in (int x, int y) coordenada, out int cantidad)
         {

@@ -1,4 +1,5 @@
 # Máquina Vending
+
 <!--
 Nomenclatura PlantUML
 https://crashedmind.github.io/PlantUMLHitchhikersGuide/index.html
@@ -7,6 +8,11 @@ VSCODE settings.json
 PlantUML Server:
 https://www.plantuml.com/plantuml
 -->
+## TODO
+- falta hacer el informe
+- falta verificar usuarios de parafarmacia
+- falta ...
+
 
 ## Fabricamos Máquinas de Vending.
 
