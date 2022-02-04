@@ -1,4 +1,5 @@
 # Máquina Vending
+Herramientas para hacer [Diagramas](https://modeling-languages.com/text-uml-tools-complete-list/)
 
 <!--
 Nomenclatura PlantUML
