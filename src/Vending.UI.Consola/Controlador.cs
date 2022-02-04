@@ -159,7 +159,7 @@ namespace Vending.UI.Consola
                     }
 
                     // 6.- Verificar Pago
-                    var pagoStatus = _sistema.ValidarPago(articulo.Precio, pago);
+                        var pagoStatus = _sistema.ValidarPago(articulo.Precio, pago);
                     if (pagoStatus == PagoTipo.Insuficiente)
                         _vista.Mostrar($"Importe introducido insuficiente", ConsoleColor.DarkRed);
                     if (pagoStatus == PagoTipo.NoAdmintido)
@@ -189,12 +189,15 @@ namespace Vending.UI.Consola
                     // total+=precio
 
                     // 11.- Fin ciclo o Continue ...
-                    if (username != "")
-                    {
-                        var sn = _vista.TryObtenerCaracterDeString("Desea seguir comprando", "SN", 'N');
-                        if (sn == 'S') continue;
-                    }
-                    break;
+                    // if (username != "")
+                    // {
+                    //     var sn = _vista.TryObtenerCaracterDeString("Desea seguir comprando", "SN", 'N');
+                    //     if (sn == 'S') continue;
+                    // }
+                    // break;
+                    if (username == "") break;
+                    var sn = _vista.TryObtenerCaracterDeString("Desea seguir comprando", "SN", 'N');
+                    if (sn != 'S') break;
                 }
                 catch (Exception)
                 {

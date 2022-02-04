@@ -16,7 +16,11 @@ namespace Vending.Subsitemas.Monetarios
             get => Cantidad.ToList().Select((v, i) => v * Valor[i]).Sum();
         }
         // Evitamos un Excepción indicando Valido=false;
-        public bool Valido { get; }
+        public bool Valido { get; } = false;
+
+        public Efectivo(){
+        }
+        
         public Efectivo(int[] cantidad)
         {
             Valido = false;

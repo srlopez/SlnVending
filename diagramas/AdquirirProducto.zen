@@ -1,0 +1,41 @@
+u v c s
+@Starter(c)
+u->c.AdquirirProducto{
+=="Mostrar parrilla de Productos"==
+    c.MostrarProductos()
+  
+=="Seleccion de Producto"==
+    coordenadas = c->v.TryObtenerTupla("Indica la posición x,y"){ u->v.coordenadas }         articulo = c->s.ObtenerInfoArticulo(coordenadas)
+    v.Mostrar("Has seleccionado {articulo}")
+      
+=="Parafarmacia e identificación"==
+    if (articulo_Tipo == "ParaFarma" && username == "") {
+        c->v.Mostrar("Este articulo necesita que te identifiques")
+        username = v.TryObtenerDato("Indica tu nombre") { u->v.username }
+      }
+      
+=="Introducción de pago y validación"==
+    while(true){
+      monedas = c->v.TryObtenerArrayInt("Introduce monedas") { u->v.pago }
+      pago = Efectivo(monedas)
+      if(pago_Valido){ break }
+      v.Mostrar("Indique una cantidad válida")
+    }
+    pagoStatus = c->s.ValidarPago(articulo_Precio, pago)
+    if(Insuficiente){ c->v.Mostrar("Importe Insuficiente") }
+    if(NoAdmitidp){ c->v.Mostrar("Importe Incorrecto") }
+    if(SinCambios){ c->v.Mostrar("Cambios no disponibles") }
+    if(!Valido){ c->v.Mostrar("Recoja su dinero") }
+      
+=="Entrega del producto"==
+    c->v.Mostrar("Expulsando articulo")
+    c->s.DescontarCantidad(coordenadas)
+    cambio = s.AplicarPago(articulo_Precio, pago);
+    if (cambio_Importe > 0){ c->v.Mostrar("Su cambio {cambio}") } 
+
+=="Confirmación de nueva compra"==
+   if(username){ break }
+   sn = c->v.TryObtenerCaracterDeString("Desea seguir comprando") { u->v.SN }
+   if(N) { break }
+}
+
