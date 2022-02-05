@@ -1,5 +1,8 @@
 # Máquina Vending
-Herramientas para hacer [Diagramas](https://modeling-languages.com/text-uml-tools-complete-list/)
+Herramientas para hacer [Diagramas](https://modeling-languages.com/text-uml-tools-complete-list/) con texto, en lugar de modo gráfico.
+Herramientas gŕaficas [Visual Paradigm](https://www.visual-paradigm.com/download/community.jsp), que admite Modelado de Negocio, y [StarUML](https://staruml.io/download), que puede generar código C# con este plugin.
+
+VER ESTE VIDEO Sobre [Diagrama de Seuencia](https://www.youtube.com/watch?v=xspmhTvh-Hg)
 
 <!--
 Nomenclatura PlantUML
@@ -13,6 +16,8 @@ https://www.plantuml.com/plantuml
 - falta hacer el informe
 - falta verificar usuarios de parafarmacia
 - falta ...
+- ampliar el diseño/código para permitir el pago con tarjeta, y un servicio que valida el pago.
+- explicar DI para Repositorio
 
 
 ## Fabricamos Máquinas de Vending.

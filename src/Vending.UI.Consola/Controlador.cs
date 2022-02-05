@@ -97,7 +97,7 @@ namespace Vending.UI.Consola
                         "RefrescoDietetico" => "🍉",
                         // Número mágico -> refactorización
                         "Refresco" when ((Refresco)p).Centilitros < 60 => "🥤",
-                        "Refresco"  => "🍶",
+                        "Refresco" => "🍶",
                         _ => "🍬",
                     };
                     var data = new List<string> {
@@ -114,99 +114,97 @@ namespace Vending.UI.Consola
         }
         private bool AdquirirProducto()
         {
-            string username = "";
-            while (true)
+            try
             {
+                string username = "";
+            //Etiqueta (la he preferido a un bucle while/do)
+            UsuarioIdentificadoRepiteCompra:
                 // Include 'ConsultarProducto'
                 ConsultarProducto();
-                try
+
+                // Variables del Caso de Uso            
+                (int x, int y) coordenadas;
+                Producto articulo;
+                int cantidad;
+                Efectivo pago;
+
+                // 1.- Obtener coordenada de parrilla
+                while (true)
                 {
-                    // Variables del Caso de Uso            
-                    (int x, int y) coordenadas;
-                    Producto articulo;
-                    int cantidad;
-                    Efectivo pago;
-
-                    // 1.- Obtener coordenada de parrilla
-                    while (true)
-                    {
-                        coordenadas = _vista.TryObtenerTuplaInt("Indica la posición x,y", _sistema.Dimensiones);
-                        // 2.- Verificar la coordenada: Cantidad y Articulo
-                        articulo = _sistema.ObtenerInfoArticulo(coordenadas, out cantidad);
-                        if (cantidad > 0) break;
-                        _vista.Mostrar($"'{articulo.Nombre}' no disponible en estos momentos");
-                    }
-                    
-                    // 3.- Informar
-                    _vista.Mostrar($"Has seleccionado {articulo}");
-                    // _vista.Mostrar($"Has seleccionado '{articulo.Nombre}'");
-                    // _vista.Mostrar($"Importe {articulo.Precio:0.00}€");
-
-                    // 4.- -> Si Producto Parafarmacia obtener usuario
-                    if (articulo.Tipo == "ParaFarma" && username == "")
-                    {
-                        _vista.Mostrar($"Este producto requiere que te identifiques");
-                        username = _vista.TryObtenerDatoDeTipo<string>("Indica tu nombre");
-                    }
-
-                    // 5.- Obtener importe del Pago
-                    while (true)
-                    {
-                        var monedas = _vista.TryObtenerArrayInt("Introduce el número de monedas de 2€,1€,0.5€,0.2€ y 0.1€ separadas por ','", 5, ',');
-                        pago = new Efectivo(monedas);
-                        if (pago.Valido) break;
-                        _vista.Mostrar($"Importe introducido no válido", ConsoleColor.DarkRed);
-                    }
-
-                    // 6.- Verificar Pago
-                        var pagoStatus = _sistema.ValidarPago(articulo.Precio, pago);
-                    if (pagoStatus == PagoTipo.Insuficiente)
-                        _vista.Mostrar($"Importe introducido insuficiente", ConsoleColor.DarkRed);
-                    if (pagoStatus == PagoTipo.NoAdmintido)
-                        _vista.Mostrar($"Cantidad de monedas no adminitdas", ConsoleColor.DarkRed);
-                    if (pagoStatus == PagoTipo.SinCambios)
-                        _vista.Mostrar($"Cambio no disponible", ConsoleColor.DarkRed);
-                    if (pagoStatus != PagoTipo.Valido)
-                    {
-                        _vista.Mostrar($"Recoge tu dinero {pago.Importe:0.00}€");
-                        break; // Salimos
-                    }
-                    
-                    // 7.- Proceder a la entrega de producto
-                    _vista.Mostrar($"Expulsando '{articulo.Nombre}' a la bandeja de recogida ...");
-                    _sistema.DescontarCantidad(coordenadas);
-                    
-                    // 8.- Proceder a actualizar Caja 
-                    var cambio = _sistema.AplicarPago(articulo.Precio, pago);
-                    
-                    // 9.- Devolver Cambios
-                    if (cambio.Importe > 0)
-                        _vista.Mostrar($"Su cambio {cambio}");
-
-                    // 10.- Operaciones de Finalización
-                    // _sistema.VentaFinalizada(articulo.Precio)
-                    // ventas++
-                    // total+=precio
-
-                    // 11.- Fin ciclo o Continue ...
-                    // if (username != "")
-                    // {
-                    //     var sn = _vista.TryObtenerCaracterDeString("Desea seguir comprando", "SN", 'N');
-                    //     if (sn == 'S') continue;
-                    // }
-                    // break;
-                    if (username == "") break;
-                    var sn = _vista.TryObtenerCaracterDeString("Desea seguir comprando", "SN", 'N');
-                    if (sn != 'S') break;
+                    coordenadas = _vista.TryObtenerTuplaInt("Indica la posición x,y", _sistema.Dimensiones);
+                    // 2.- Verificar la coordenada: Cantidad y Articulo
+                    articulo = _sistema.ObtenerInfoArticulo(coordenadas, out cantidad);
+                    if (cantidad > 0) break;
+                    _vista.Mostrar($"'{articulo.Nombre}' no disponible en estos momentos");
                 }
-                catch (Exception)
+
+                // 3.- Informar
+                _vista.Mostrar($"Has seleccionado {articulo}");
+                // _vista.Mostrar($"Has seleccionado '{articulo.Nombre}'");
+                // _vista.Mostrar($"Importe {articulo.Precio:0.00}€");
+
+                // 4.- -> Si Producto Parafarmacia obtener usuario
+                if (articulo.Tipo == "ParaFarma" && username == "")
                 {
-                    _vista.Mostrar("UC: Cancelación de usuario", ConsoleColor.DarkRed);
-                    break;
+                    _vista.Mostrar($"Este producto requiere que te identifiques");
+                    username = _vista.TryObtenerDatoDeTipo<string>("Indica tu nombre");
                 }
+
+                // 5.- Obtener importe del Pago
+                while (true)
+                {
+                    var monedas = _vista.TryObtenerArrayInt("Introduce el número de monedas de 2€,1€,0.5€,0.2€ y 0.1€ separadas por ','", 5, ',');
+                    pago = new Efectivo(monedas);
+                    if (pago.Valido) break;
+                    _vista.Mostrar($"Importe introducido no válido", ConsoleColor.DarkRed);
+                }
+
+                // 6.- Verificar Pago
+                var pagoStatus = _sistema.ValidarPago(articulo.Precio, pago);
+                if (pagoStatus == PagoTipo.Insuficiente)
+                    _vista.Mostrar($"Importe introducido insuficiente", ConsoleColor.DarkRed);
+                if (pagoStatus == PagoTipo.NoAdmintido)
+                    _vista.Mostrar($"Cantidad de monedas no adminitdas", ConsoleColor.DarkRed);
+                if (pagoStatus == PagoTipo.SinCambios)
+                    _vista.Mostrar($"Cambio no disponible", ConsoleColor.DarkRed);
+                if (pagoStatus != PagoTipo.Valido)
+                {
+                    _vista.Mostrar($"Recoge tu dinero {pago.Importe:0.00}€");
+                    return true; // Salimos
+                }
+
+                // 7.- Proceder a la entrega de producto
+                _vista.Mostrar($"Expulsando '{articulo.Nombre}' a la bandeja de recogida ...");
+                _sistema.DescontarCantidad(coordenadas);
+
+                // 8.- Proceder a actualizar Caja 
+                var cambio = _sistema.AplicarPago(articulo.Precio, pago);
+
+                // 9.- Devolver Cambios
+                if (cambio.Importe > 0)
+                    _vista.Mostrar($"Su cambio {cambio}");
+
+                // 10.- Operaciones de Finalización
+                // _sistema.VentaFinalizada(articulo.Precio)
+                // ventas++
+                // total+=precio
+
+                // 11.- Usuario Identificado - Repetimos ciclo si quiere comprar más
+                // Me gusta el GOTO aquí. Queda mas limpio que poner un while()
+                if (username != "" &&
+                    'S' == _vista.TryObtenerCaracterDeString("Desea seguir comprando", "SN", 'N'))
+                    goto UsuarioIdentificadoRepiteCompra;
+
+            }
+            catch (Exception)
+            {
+                _vista.Mostrar("UC: Cancelación de usuario", ConsoleColor.DarkRed);
+                return true;
             }
             return true;
         }
+
+
         private bool ReestablecerMáquina()
         {
             _sistema.RellernarParrilla();
