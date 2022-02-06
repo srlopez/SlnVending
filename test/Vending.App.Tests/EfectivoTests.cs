@@ -1,7 +1,7 @@
 using Xunit;
 using System;
 using System.Collections.Generic;
-using Vending.Subsitemas.Monetarios;
+using Vending.Subsitemas.Economicos;
 
 namespace Vending
 {

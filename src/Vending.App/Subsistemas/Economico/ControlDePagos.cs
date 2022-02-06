@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 
-namespace Vending.Subsitemas.Monetarios
+namespace Vending.Subsitemas.Economicos
 {
     using Vending.Modelos;
     public class ControlDePagos

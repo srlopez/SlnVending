@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Vending.Modelos;
-using Vending.Subsitemas.Monetarios;
+using Vending.Subsitemas.Economicos;
 
 namespace Vending.UI.Consola
 {
@@ -161,13 +161,13 @@ namespace Vending.UI.Consola
 
                 // 6.- Verificar Pago
                 var pagoStatus = _sistema.ValidarPago(articulo.Precio, pago);
-                if (pagoStatus == PagoTipo.Insuficiente)
+                if (pagoStatus == PagoStatus.Insuficiente)
                     _vista.Mostrar($"Importe introducido insuficiente", ConsoleColor.DarkRed);
-                if (pagoStatus == PagoTipo.NoAdmintido)
+                if (pagoStatus == PagoStatus.NoAdmintido)
                     _vista.Mostrar($"Cantidad de monedas no adminitdas", ConsoleColor.DarkRed);
-                if (pagoStatus == PagoTipo.SinCambios)
+                if (pagoStatus == PagoStatus.SinCambios)
                     _vista.Mostrar($"Cambio no disponible", ConsoleColor.DarkRed);
-                if (pagoStatus != PagoTipo.Valido)
+                if (pagoStatus != PagoStatus.Valido)
                 {
                     _vista.Mostrar($"Recoge tu dinero {pago.Importe:0.00}€");
                     return true; // Salimos

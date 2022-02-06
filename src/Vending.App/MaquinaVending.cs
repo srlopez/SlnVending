@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Vending.Modelos;
 using Vending.Subsitemas;
-using Vending.Subsitemas.Monetarios;
+using Vending.Subsitemas.Economicos;
 
 namespace Vending
 {
@@ -31,18 +31,18 @@ namespace Vending
         public void RellernarParrilla() => _dispensador.RellernarParrilla();
 
         // ==== PAGOS ====
-        public PagoTipo ValidarPago(decimal precio, Efectivo pago)
+        public PagoStatus ValidarPago(decimal precio, Efectivo pago)
         {
             // Pago insuficiente
-            if (pago.Importe < precio) return PagoTipo.Insuficiente;
+            if (pago.Importe < precio) return PagoStatus.Insuficiente;
             // Numero de monedas excesivo
-            if (pago.Cantidad.Any(i => i > _ctrlPagos.MaxMonedasPorCanal)) return PagoTipo.NoAdmintido;
-            if (pago.Cantidad.Sum() > _ctrlPagos.MaxMonedasPorPago) return PagoTipo.NoAdmintido;
+            if (pago.Cantidad.Any(i => i > _ctrlPagos.MaxMonedasPorCanal)) return PagoStatus.NoAdmintido;
+            if (pago.Cantidad.Sum() > _ctrlPagos.MaxMonedasPorPago) return PagoStatus.NoAdmintido;
             // Cambio no disponible
             var cambio = _ctrlPagos.ValidarPago(precio, pago);
-            if (!cambio.Valido) return PagoTipo.SinCambios;
+            if (!cambio.Valido) return PagoStatus.SinCambios;
             // Pago Valido
-            return PagoTipo.Valido;
+            return PagoStatus.Valido;
         }
         public Efectivo AplicarPago(decimal precio, Efectivo pago) => _ctrlPagos.AplicarPago(precio, pago);
         public void ReestablecerCaja() => _ctrlPagos.ReestablecerCaja();

@@ -1,4 +1,5 @@
-public enum PagoTipo{
+
+public enum PagoStatus{
     Insuficiente,
     NoAdmintido,
     SinCambios,

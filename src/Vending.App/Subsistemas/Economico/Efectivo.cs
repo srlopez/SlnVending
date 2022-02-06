@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Vending.Subsitemas.Monetarios
+namespace Vending.Subsitemas.Economicos
 {
     public class Efectivo
     {
@@ -18,8 +18,6 @@ namespace Vending.Subsitemas.Monetarios
         // Evitamos un Excepción indicando Valido=false;
         public bool Valido { get; } = false;
 
-        public Efectivo(){
-        }
         
         public Efectivo(int[] cantidad)
         {

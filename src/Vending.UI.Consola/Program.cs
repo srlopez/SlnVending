@@ -3,7 +3,7 @@
 using Vending.UI.Consola;
 using Vending;
 using Vending.Subsitemas;
-using Vending.Subsitemas.Monetarios;
+using Vending.Subsitemas.Economicos;
 using Vending.Modelos;
 
 var appConfig = new AppConfig();
