@@ -41,6 +41,3 @@ var controlador = new Controlador(sistema, vista);
 
 controlador.Run();
 
-
-
-

@@ -5,6 +5,7 @@
 
 # Visual parading
 *.vpp.bak_*
+*.vpp.lck
 # User-specific files
 *.rsuser
 *.suo
